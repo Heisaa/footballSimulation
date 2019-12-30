@@ -59,14 +59,19 @@ function setup() {
 }
 
 function draw() {
+     /* 
+    *
+    *   Update
+    * 
+    */
     background(70);
     image(pitch.bg, pitch.x, pitch.y);
 
-    // Update
     teams.one.forEach(fp => {
         fp.updateFieldPlayer(ball);
     });
-    
+
+    oldBallPos = ball.pos;
     ball.update();
     // GOOOAL
     if (ball.pos.x > pitch.x + pitch.width) {

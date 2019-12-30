@@ -19,18 +19,18 @@ function setup() {
     }
 
     // Set ball stuff
-    ball.posVec = createVector(width / 2, height / 2);
+    ball.pos = createVector(width / 2, height / 2);
     ball.speed = createVector(0, 0);
     ball.update = function () {
         // Add speed
-        this.posVec.add(this.speed);
+        this.pos.add(this.speed);
         // Deaccel
         this.speed.lerp(0, 0, 0, 0.05);
     }
     ball.draw = function () {
         noStroke();
         fill(255);
-        circle(this.posVec.x, this.posVec.y, 5);
+        circle(this.pos.x, this.pos.y, 5);
     }
     ball.setSpeed = function (vec) {
         this.speed.set(vec);
@@ -68,16 +68,21 @@ function draw() {
     });
     
     ball.update();
-    // console.log(fp.state);
-    // Draw
+    // GOOOAL
+    if (ball.pos.x > pitch.x + pitch.width) {
+        //ball out check if goal
+
+    }
+
+    /* 
+    *
+    *   Draw
+    * 
+    */
     teams.one.forEach(fp => {
         fp.drawFieldPlayer();
     });
     
     ball.draw();
     goals.draw();
-
-    // GOOOAL
-    if ball
-
 }

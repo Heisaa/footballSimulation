@@ -1,6 +1,6 @@
 class FieldPlayer {
     constructor() {
-        this.posVec = createVector(random(100, 700), random(100, 400));
+        this.pos = createVector(random(100, 700), random(100, 400));
         this.direction = 0;
         // Skills
         this.speed = 1;
@@ -25,12 +25,12 @@ class FieldPlayer {
 
 
     withoutBall(ball) {
-        let vecDist = p5.Vector.sub(ball.posVec, this.posVec);
+        let vecDist = p5.Vector.sub(ball.pos, this.pos);
 
         vecDist.setMag(this.speed);
-        this.posVec.add(vecDist);
+        this.pos.add(vecDist);
 
-        if (this.posVec.dist(ball.posVec) <= this.ballContolDist) {
+        if (this.pos.dist(ball.pos) <= this.ballContolDist) {
             this.state = 'hasBall';
         } else {
             this.state = 'withoutBall'
@@ -40,7 +40,7 @@ class FieldPlayer {
     hasBall(ball) {
         ball.setSpeed(2,0);
 
-        if (this.posVec.dist(ball.posVec) <= this.ballContolDist) {
+        if (this.pos.dist(ball.pos) <= this.ballContolDist) {
             this.state = 'hasBall';
         } else {
             this.state = 'withoutBall'
@@ -51,7 +51,7 @@ class FieldPlayer {
     drawFieldPlayer() {
         noStroke();
         fill(230, 10, 10);
-        circle(this.posVec.x, this.posVec.y, 20);
+        circle(this.pos.x, this.pos.y, 20);
         //triangle(this.x + 20, this.y)
     }
 }
